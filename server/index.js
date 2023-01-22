@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const port = 4000
 const usersRouter = require("./routes/users")
@@ -11,6 +12,9 @@ app.use(
 app.get('/', (req, res) => {
      res.json({message: "ok"})
 })
+app.use(cors({
+    origin: 'http://127.0.0.1:3000'
+}));
 app.use("/users", usersRouter)
 app.use("/auth", authRouter)
 app.use((err, req, res, next) => {

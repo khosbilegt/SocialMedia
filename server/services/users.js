@@ -10,14 +10,13 @@ async function getMultiple(page = 1) {
      const rows = await db.query(query)
      const data = helper.emptyOrRows(rows)
      const meta = {page}
-
      return {
           data,
           meta
      }
 }
 
-async function createUser(user) {
+async function registerUser(user) {
      const query = `
      INSERT INTO Users(FirstName, LastName, Password, Email, Role)
      VALUES (?, ?, ?, ?, "User");
@@ -59,7 +58,7 @@ async function deleteUser(id) {
 
 module.exports = {
      getMultiple,
-     createUser,
+     registerUser,
      modifyUser,
      deleteUser
 }

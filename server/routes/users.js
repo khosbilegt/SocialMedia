@@ -13,7 +13,7 @@ router.get('/', async function(req, res, next) {
 
 router.post('/', async function(req, res, next) {
      try {
-          res.json(await users.createUser(req.body))
+          res.json(await users.registerUser(req.body))
      } catch(err) {
           console.error(`Error while creating user: ${err.message}`)
           next(err)

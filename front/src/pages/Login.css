@@ -1,0 +1,105 @@
+.Login {
+     height: 100%;
+     width: 100%;
+     position: absolute;
+     margin: 0;
+     padding: 0;
+     background-color: #20232a;
+}
+
+#LoginCard {
+     height: 100%;
+     width: 40%;
+     left: 30%;
+     margin-left: calc((100vw - max(40vw, 500px))/2);
+     background-color: #282c34;
+     display: flex;
+     flex-direction: column;
+     min-width: 500px;
+     align-items: center;
+}
+
+#LoginCard label {
+     color: #fff;
+     text-align: center;
+     margin-top: 50px;
+}
+
+#LoginCard input {
+     margin-top: 10px;
+     width: 80%;
+     background: #20232a;
+     height: 40px;
+     border: none;
+     color: #fff;
+     padding-left: 10px;
+     padding-right: 10px;
+     min-width: 400px;
+}
+#LoginCard input::placeholder {
+     text-align: center;
+}
+#LoginCard input:focus {
+     outline: none;
+}
+
+#LoginCard button {
+     margin-top: 50px;
+     height: 40px;
+     width: 60%;
+     background-color: #61dafb;
+     border: none;
+     color: #000;
+     font-size: 15px;
+     transition: 300ms;
+     min-width: 300px;
+}
+#LoginCard button:hover {
+     background-color: #fff;
+}
+
+#LoginCard #Logo {
+     width: 250px;
+}
+
+#LoginCard a, #LoginCard p {
+     margin-top: 25px;
+     color: #fff;
+     transition: 300ms;
+     font-size: 15px;
+}
+
+#LoginCard a:hover {
+     color: #61dafb;
+}
+
+#Alert {
+     width: 100%;
+     height: 50px;
+     text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+     #LoginCard {
+          margin-left: 0;
+          left: 0;
+          width: 100%;
+     }
+     #LoginCard input {
+          width: 70%;
+     }
+     #LoginCard button {
+          width: 40%;
+     }
+     #Alert {
+          width: 100%;
+          height: 50px;
+          text-align: center;
+     }
+}
+
+/*
+Extra Small < 768
+768 < Small < 992
+1200 < Large
+*/
