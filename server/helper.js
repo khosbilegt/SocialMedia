@@ -12,13 +12,9 @@ function emptyOrRows(rows) {
 function constructModify(id, user) {
      let query = `UPDATE Users SET `
      let parameters = []
-     if(typeof(user.FirstName) != "undefined") {
-          query = query + `FirstName = ?,`
-          parameters.push(user.FirstName)
-     }
-     if(typeof(user.LastName) != "undefined") {
-          query = query + `LastName = ?,`
-          parameters.push(user.LastName)
+     if(typeof(user.Username) != "undefined") {
+          query = query + `Username = ?,`
+          parameters.push(user.Username)
      }
      if(typeof(user.Password) != "undefined") {
           query = query + `Password = ?,`

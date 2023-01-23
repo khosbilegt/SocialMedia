@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from "react-router-dom";
-//import axios from 'axios'
+import axios from 'axios'
 import './Register.css';
 
 export function Register() {
@@ -74,6 +74,46 @@ export function Register() {
           if(!validatePassword()) {
                return
           }
+
+          var data = JSON.stringify({
+          "Username": username,
+          "Password": password,
+          "Email": email
+          });
+
+          var config = {
+          method: 'post',
+          url: 'http://192.168.1.32:4000/users',
+          headers: { 
+          'Content-Type': 'application/json'
+          },
+          data : data
+          };
+
+          axios(config)
+          .then(function (response) {
+               if(JSON.stringify(response.data) === "User created successfully") {
+                    setAlertColor(rightColor)
+                    setAlertOpacity(1)
+                    setAlertString("Account created successfully!")
+               } else {
+                    setAlertColor(wrongColor)
+                    setAlertOpacity(1)
+                    setAlertString("Account creation failed!")
+               }
+          })
+          .catch(function (error) {
+               setAlertColor(wrongColor)
+               setAlertOpacity(1)
+               setAlertString("Account creation failed!")
+               console.log(error);
+          });
+
+     }
+
+     const deleteAlert = (e) => {
+          e.preventDefault()
+          setAlertOpacity(0)
      }
 
      const alertStyle = {
@@ -85,6 +125,7 @@ export function Register() {
           <div className="Register">
                <form id="RegisterCard" onSubmit={submitHandler}>
                     <div id="Alert" style={alertStyle}>
+                         <button onClick={deleteAlert}>x</button>
                          <p>{alertString}</p>
                     </div>
                     <label>Email</label>

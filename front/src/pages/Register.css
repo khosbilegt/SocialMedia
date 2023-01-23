@@ -79,6 +79,20 @@
      text-align: center;
      padding-bottom: 15px;
 }
+#Alert button {
+     position: absolute;
+     margin: 0;
+     width: 25px;
+     height: 25px;
+     border-radius: 20px;
+     min-width: 10px;
+     left: calc((100vw - max(40vw, 500px))/2 + 40% - 25px);
+     background-color: transparent;
+}
+#Alert button:hover {
+     background-color: transparent;
+     color: #fff;
+}
 
 @media only screen and (max-width: 768px) {
      #RegisterCard {

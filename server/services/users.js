@@ -18,13 +18,13 @@ async function getMultiple(page = 1) {
 
 async function registerUser(user) {
      const query = `
-     INSERT INTO Users(FirstName, LastName, Password, Email, Role)
-     VALUES (?, ?, ?, ?, "User");
+     INSERT INTO Users(Username, Password, Email, Role)
+     VALUES (?, ?, ?, "User");
      `
      let message = `Error in creating user`
      const salt = bcrypt.genSaltSync(saltRounds)
      const hash = bcrypt.hashSync(user.Password, salt)
-     const result = await db.query(query, [user.FirstName, user.LastName, hash, user.Email])     
+     const result = await db.query(query, [user.Username, hash, user.Email])     
      if(result.affectedRows) {
           message = `User created successfully`
      }
