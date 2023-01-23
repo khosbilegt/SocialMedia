@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import './Register.css';
 
 export function Register() {
+     const navigate = useNavigate()
      const wrongColor = "#fc929e"
      const rightColor = "#8dc891"
 
@@ -16,8 +17,6 @@ export function Register() {
      const [alertString, setAlertString] = useState('')
 
      const validatePassword = () => {
-          console.log(password)
-
           if(password.length < 8) {
                setAlertColor(wrongColor)
                setAlertOpacity(1)
@@ -55,17 +54,14 @@ export function Register() {
           
           const specialChars = `/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;`
           const specialCharExists = specialChars.split('').some(char => password.includes(char))
-          if(specialCharExists) {
-               setAlertColor(rightColor)
-               setAlertOpacity(1)
-               setAlertString("Password is valid!")
-               return true
-          } else {
+          if(!specialCharExists) {
                setAlertColor(wrongColor)
                setAlertOpacity(1)
                setAlertString("Password must contain at least 1 special character!")
                return false
           }
+
+          return true
      }
 
      const submitHandler = (e) => {
@@ -92,10 +88,16 @@ export function Register() {
 
           axios(config)
           .then(function (response) {
-               if(JSON.stringify(response.data) === "User created successfully") {
+               console.log(JSON.stringify(response.data))
+               if(JSON.stringify(response.data) == '"User created successfully"') {
                     setAlertColor(rightColor)
                     setAlertOpacity(1)
                     setAlertString("Account created successfully!")
+                    navigate('/login')
+               } else if(JSON.stringify(response.data) == '"User Exists"') {
+                    setAlertColor(wrongColor)
+                    setAlertOpacity(1)
+                    setAlertString("Email already in use!")
                } else {
                     setAlertColor(wrongColor)
                     setAlertOpacity(1)
@@ -106,7 +108,6 @@ export function Register() {
                setAlertColor(wrongColor)
                setAlertOpacity(1)
                setAlertString("Account creation failed!")
-               console.log(error);
           });
 
      }
@@ -145,7 +146,7 @@ export function Register() {
                          setConfirmPassword(e.target.value)
                     }}/>
                     <button type="submit">Sign Up</button>
-                    <p>Already have an account? Login <Link to={"/register"}>here</Link>!</p>
+                    <p>Already have an account? Login <Link to={"/login"}>here</Link>!</p>
                </form>
           </div>
      )

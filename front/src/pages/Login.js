@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { ReactComponent as IconLogo } from '../logo.svg'
 import './Login.css';
 
 export function Login() {
+     const navigate = useNavigate()
      const wrongColor = "#fc929e"
      const rightColor = "#8dc891"
 
@@ -41,6 +42,7 @@ export function Login() {
                setAlertColor(rightColor)
                setAlertOpacity(1)
                setAlertString("Successfully logged in!")
+               navigate('/goodbye')
           }
           })
           .catch(function (error) {

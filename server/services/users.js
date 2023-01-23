@@ -24,11 +24,17 @@ async function registerUser(user) {
      let message = `Error in creating user`
      const salt = bcrypt.genSaltSync(saltRounds)
      const hash = bcrypt.hashSync(user.Password, salt)
-     const result = await db.query(query, [user.Username, hash, user.Email])     
-     if(result.affectedRows) {
-          message = `User created successfully`
+     try {
+          const result = await db.query(query, [user.Username, hash, user.Email])     
+          if(result.affectedRows) {
+               message = `User created successfully`
+          }
+     } catch(err) {
+          if(err.code == 'ER_DUP_ENTRY') {
+               console.log("User Exists")
+               message = "User Exists"
+          }
      }
-     console.log(message)
      return message
 }
 
