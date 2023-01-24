@@ -42,7 +42,7 @@ export function Login() {
                setAlertColor(rightColor)
                setAlertOpacity(1)
                setAlertString("Successfully logged in!")
-               navigate('/goodbye')
+               navigate('/home')
           }
           })
           .catch(function (error) {

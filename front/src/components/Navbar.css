@@ -1,0 +1,101 @@
+:root {
+     --dark: #20232a;
+     --light-dark: #282c34;
+     --blue: #61dafb;
+}
+
+.Navbar {
+     top: 0;
+     height: 50px;
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     background-color: var(--dark);
+}
+
+.Navbar #Logo {
+     position: absolute;
+     height: 50px;
+     padding: 0;
+     z-index: 2;
+}
+
+.Navbar input {
+     margin-top: 7.5px;
+     margin-left: 75px;
+     padding-left: 10px;
+     padding-right: 10px;
+     border-radius: 20px;
+     border: none;
+     width: 30%;
+     height: 35px;
+     min-width: 250px;
+     transition: 300ms;
+     background-color: var(--light-dark);
+     color: #fff;
+     font-size: 15px;
+}
+.Navbar input:focus {
+     outline: none;
+}
+
+.Navbar ul {
+     list-style: none;
+     width: 30%;
+     display: flex;
+     justify-content: space-between;
+}
+.Navbar ul li a, .Navbar ul li button {
+     color: var(--blue);
+     font-size: 20px;
+     border-radius: 20px;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-top: 10px;
+     padding-bottom: 5px;
+     background-color: var(--light-dark);
+     transition: 300ms;
+     border: none;
+     z-index: 1;
+}
+.Navbar ul li button {
+     margin-top: -10px;
+}
+.Navbar ul li a:hover, .Navbar ul li button:hover {
+     background-color: #79b6f2;
+}
+
+@media only screen and (max-width: 992px) {
+     .Navbar ul {
+          width: 30%;
+     }
+}
+
+@media only screen and (max-width: 768px) {
+     .Navbar input {
+          min-width: 35px;
+          width: 35px;
+          height: 38px;
+          border-radius: 15px;
+          padding: 0;
+     }
+     .Navbar input:focus {
+          margin-left: 0;
+          width: 200px;
+          z-index: 1;
+     }
+     .Navbar input::-webkit-input-placeholder { /* WebKit browsers */
+          color:    var(--light-dark);
+      }
+      :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          color:    var(--light-dark);
+          opacity:  1;
+      }
+      ::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color:    var(--light-dark);
+          opacity:  1;
+      }
+      :-ms-input-placeholder { /* Internet Explorer 10+ */
+          color:    var(--light-dark);
+      }
+}
