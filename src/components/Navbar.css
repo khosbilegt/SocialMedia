@@ -1,0 +1,57 @@
+:root {
+     --accent: #73D1A2;
+     --text: #fff;
+     --input: #fff;
+}
+
+.Navbar {
+     width: 100vw;
+     height: 50px;
+     display: flex;
+     background-color: var(--accent);
+}
+
+.Navbar svg {
+     margin-top: -5px;
+     max-width: 80px;
+}
+
+.Navbar input {
+     margin-top: 10px;
+     width: 200px;
+     height: 30px;
+     border-radius: 2px;
+     border: none;
+     padding: 0 5px;
+     transition: 200ms;
+     background-color: var(--input);
+}
+
+.Navbar input:focus {
+     outline: none;
+     width: 250px;
+}
+
+.Navbar ul {
+     display: flex;
+     list-style: none;
+     margin-top: 0px;
+     margin-left: auto;
+     padding-right: 25px;
+     line-height: 50px;
+     height: 50px;
+     gap: 50px;
+     order: 2;
+}
+
+.Navbar li {
+     line-height: 50px;
+     font-size: 20px;
+}
+.Navbar li svg {
+     color: var(--text);
+     transition: 200ms;
+}
+.Navbar li svg:hover {
+     color: #3f3f3f;
+}
