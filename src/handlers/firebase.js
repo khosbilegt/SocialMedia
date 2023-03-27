@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { collection, doc, getFirestore, getDocs, getDoc } from "firebase/firestore"; 
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAkpWH7F-Z6moRRyM3RrBLB913dOscmHus",
@@ -13,6 +14,7 @@ export const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 export const actionCodeSettings = {
      // URL you want to redirect back to. The domain (www.example.com) for this
@@ -30,3 +32,16 @@ export const actionCodeSettings = {
      },
      dynamicLinkDomain: 'example.page.link'
 };
+
+export async function getUserInfo() {
+  const docRef = doc(db, "jqg6YLEeIRdnLsYc1QAOXnYiEjq2", "user_info");
+  const docSnap = await getDoc(docRef);
+  return docSnap.data();
+}
+
+export async function getInfo() {
+  const querySnapshot = await getDocs(collection(db, "jqg6YLEeIRdnLsYc1QAOXnYiEjq2"))
+  querySnapshot.forEach((doc) => { 
+    console.log(doc.id, " => " , doc.data())
+  })
+}

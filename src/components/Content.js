@@ -1,17 +1,37 @@
 
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Post } from "./Post"
+import { getDisplayName } from "../handlers/user"
 import './Content.css';
-import { Link } from "react-router-dom"
-import { ReactComponent as IconLogo } from '../logo.svg'
-import { FaRegUser, FaRegEnvelope, FaRegBell } from "react-icons/fa"
 
 
-export function Content() {
+export function Content({ user }) {
+
+     const [userRef, setUserRef] = useState();
+     const [displayName, setDisplayName] = useState("");
+
+     /*
+     const displayPosts = () => {
+          return <Post user={userRef}/>
+     }*/
+
+     useEffect(() => {
+          setUserRef(user);
+
+          const fetchData = async () => {
+               const data = await getDisplayName(user)
+               .then((name) => {
+                    setDisplayName(name);
+                    //displayPosts();
+               });
+          }
+
+          fetchData();
+     }, [])
 
      return (
           <div className="Content">
-               <Post />
+               <Post user={user} displayName={displayName}/>
           </div>
      )
 }

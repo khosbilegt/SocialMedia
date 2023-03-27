@@ -24,7 +24,7 @@ export function Redirect() {
      });
 
      if(loggedIn && loaded) {
-          return <Home />
+          return <Home user={user} />
      }
      if(!loggedIn && loaded) {
           return <Login />
